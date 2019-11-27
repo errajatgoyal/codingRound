@@ -4,21 +4,38 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class FlightBookingTest {
 
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver;
 
+    @BeforeTest
+    public void beforeTest() {
+        setDriverPath();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.addArguments("--start-maximized");
+        driver = new ChromeDriver(chromeOptions);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @AfterTest
+    public void afterTest() {
+        //close the browser after every Test
+        driver.quit();
+    }
 
     @Test
     public void testThatResultsAppearForAOneWayJourney() {
 
-        setDriverPath();
         driver.get("https://www.cleartrip.com/");
         waitFor(2000);
         driver.findElement(By.id("OneWay")).click();
@@ -32,8 +49,10 @@ public class FlightBookingTest {
         List<WebElement> originOptions = driver.findElement(By.id("ui-id-1")).findElements(By.tagName("li"));
         originOptions.get(0).click();
 
-        driver.findElement(By.id("toTag")).clear();
-        driver.findElement(By.id("toTag")).sendKeys("Delhi");
+        //Corrected the id from toTag to ToTag
+        WebElement toTag = driver.findElement(By.id("ToTag"));
+        toTag.clear();
+        toTag.sendKeys("Delhi");
 
         //wait for the auto complete options to appear for the destination
 
@@ -50,10 +69,6 @@ public class FlightBookingTest {
         waitFor(5000);
         //verify that result appears for the provided journey search
         Assert.assertTrue(isElementPresent(By.className("searchSummary")));
-
-        //close the browser
-        driver.quit();
-
     }
 
 
