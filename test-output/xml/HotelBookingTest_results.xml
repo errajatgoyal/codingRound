@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CODING ROUND TEST"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="8.873">
+  <properties />
+  
+  
+            <testcase name="shouldBeAbleToSearchForHotels" time="8.873" classname="HotelBookingTest" />
+      
+</testsuite>
