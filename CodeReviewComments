@@ -1,0 +1,14 @@
+- Its better to create a TestHelper class for all the common functions that are used across all test classes
+- Use @Findby notations to store locators in every test class
+- You can use a TestNGListener class to create logs while testng tests' execution
+- Do not use waitFor()(Thread.sleep) statements in the code unless absolutely necessary and try to handle it by implicit wait in @BeforeTest
+- You can use the @BeforeClass testNG annotation to use Chrome Options to disable notifications to handle the popup asking permission to show notifications, initialize Chrome driver and setting implicit wait to set a wait across all elements
+- Try Using @AfterClass to close the browser after every test
+- There is a PageFactory class's initElements() function to initialize the Web Elements specified under @findby tag that can be used
+- You need to use driver.switch to move to the modal window where the rest of the execution needs to happen
+- Make sure you set the Release version to 11 to support JavaFX library that you use for PlatformUtil class
+- Always Update Maven dependencies to latest versions
+- To avoid NullPointerException, initialize the WebDriver using @BeforeTest or @BeforeClass annotation
+- Regularly update the ChromeDriver.exe version to match your Chrome Browser version
+- Use more descriptive variable names
+- It is advisable to specify a message in the AAssert statement, you can use Assert.true(boolean validation,String message) for that
