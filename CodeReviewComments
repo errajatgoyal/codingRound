@@ -1,3 +1,4 @@
+<<KINDLY RUN THE TESTS FROM THE testng.xml file that I have created in the repo, however it can be run individually too like earlier>>
 - Its better to create a TestHelper class for all the common functions that are used across all test classes
 - Use @Findby notations to store locators in every test class
 - You can use a TestNGListener class to create logs while testng tests' execution
